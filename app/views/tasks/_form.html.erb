@@ -1,0 +1,19 @@
+<%= form_with(model: @task, local: true, url: choose_path, method: choose_request) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @task.errors.count %> 件のエラーがあります。</h2>
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "タスク名" %>
+    <%= f.text_field :name %><br>
+    <%= f.label "詳細" %>
+    <%= f.text_field :detail %><br>
+  </div>
+<% end %>
