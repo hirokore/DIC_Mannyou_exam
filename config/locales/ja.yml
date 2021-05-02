@@ -1,0 +1,15 @@
+ja:
+  view:
+    task_name: タスク名
+    content: 内容
+    detail: 詳細
+    edit: 編集
+    back: 戻る
+    task: タスク
+    display: 画面
+    registration: 登録
+    list: 一覧
+    destroy: 削除
+    destroy?: 本当に削除してしまってもよろしいですか？
+    task_registration: タスク登録
+    have_error: 件のエラーがあります。
