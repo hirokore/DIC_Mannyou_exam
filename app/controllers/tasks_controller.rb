@@ -28,6 +28,7 @@ class TasksController < ApplicationController
 
   def index
     @task = Task.all
+    @task_sort_created = @task.order(created_at: :asc)
   end
 
   def show
