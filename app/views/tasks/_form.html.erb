@@ -12,9 +12,9 @@
 
   <div class="field">
     <%= f.label t('view.task_name') %>
-    <%= f.text_field :name %><br>
+    <%= f.text_field :name, id: "task_name" %><br>
     <%= f.label t('view.content') %>
-    <%= f.text_field :details %><br>
+    <%= f.text_field :details, id: "task_content" %><br>
     <%= f.submit t('view.task_registration') %>
   </div>
 <% end %>

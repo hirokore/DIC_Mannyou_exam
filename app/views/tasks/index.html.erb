@@ -12,7 +12,7 @@
   <tbody>
     <% @task_sort_created.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td class="task_list"><%= task.name %></td>
         <td><%= task.details %></td>
         <td><%= link_to t('view.detail'), task %></td>
         <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
