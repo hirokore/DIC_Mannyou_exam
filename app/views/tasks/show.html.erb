@@ -1,0 +1,11 @@
+<div class="">
+  <p>
+    <strong>タスク名:</strong><%= @task.name %>
+  </p>
+  <p>
+    <strong>内容:</strong><%= @task.details %>
+  </p>
+</div>
+<%= link_to '編集', edit_task_path %> |
+<%= link_to '戻る', tasks_path %>
+
