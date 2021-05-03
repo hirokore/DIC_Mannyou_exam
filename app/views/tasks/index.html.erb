@@ -1,23 +1,22 @@
-<h1>タスク一覧</h1>
+<h1><%= t('view.task') %><%= t('view.list') %><%= t('view.display') %></h1>
 <table>
   <thead>
     <tr>
-      <th>タスク名</th>
-      <th>内容</th>
+      <th><%= t('view.task_name') %></th>
+      <th><%= t('view.content') %></th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @task.each do |task| %>
+    <% @task_sort_created.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td class="task_list"><%= task.name %></td>
         <td><%= task.details %></td>
-        <td><%= link_to '詳細', task %></td>
-        <td><%= link_to '編集', edit_task_path(task) %></td>
-        <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に消してもいいですか？' } %></td>
+        <td><%= link_to t('view.detail'), task %></td>
+        <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
+        <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: t('view.destroy?') } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,4 +24,4 @@
 
 <br>
 
-<%= link_to 'タスクを登録する', new_task_path %>
+<%= link_to t('view.task_registration'), new_task_path %>
