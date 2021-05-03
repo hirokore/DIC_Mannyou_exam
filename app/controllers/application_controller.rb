@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :basic_authentication
+  before_action :basic_authentication if Rails.env.production?
 
   private
 
