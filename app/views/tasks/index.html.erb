@@ -12,9 +12,9 @@
   <tbody>
     <% @task_sort_created.each do |task| %>
       <tr>
-        <td class="task_list"><%= task.name %></td>
+        <td class="task_list_name"><%= task.name %></td>
         <td><%= task.details %></td>
-        <td><%= task.expired_at %></td>
+        <td class="task_list_expired_at"><%= task.expired_at %></td>
         <td><%= link_to t('view.detail'), task %></td>
         <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: t('view.destroy?') } %></td>

@@ -11,6 +11,7 @@ describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "task_name",	with: "task_test"
         fill_in "task_content",	with: "details_test"
+        fill_in "task_expired_at",	with: "(002020-04-01).to_date"
         click_on "タスク登録"
         expect(page).to have_content("登録完了")
       end
@@ -27,9 +28,18 @@ describe 'タスク管理機能', type: :system do
       it '新しいタスクが一番上に表示される' do
         FactoryBot.create(:second_task)
         visit tasks_path
-        task_list = all('.task_list')
-        expect(task_list[0]).to have_content 'test_second'
-        expect(task_list[1]).to have_content 'test_first'
+        list = all('.task_list_name')
+        expect(list[0]).to have_content 'test_second'
+        expect(list[1]).to have_content 'test_first'
+      end
+    end
+    context '終了期限でソートするというリンクを押した場合' do
+      it '終了期限が一番遅いタスクが一番上に表示される' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        list = all('.task_list_expired_at')
+        expect(list[0]).to have_content "2020-04-05"
+        expect(list[1]).to have_content "2020-04-01"
       end
     end
   end
