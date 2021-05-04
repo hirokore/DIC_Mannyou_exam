@@ -233,3 +233,4 @@ ja:
     destroy?: 本当に削除してしまってもよろしいですか？
     task_registration: タスク登録
     have_error: 件のエラーがあります。
+    expired_at: 終了期限
