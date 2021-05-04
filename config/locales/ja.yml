@@ -234,3 +234,4 @@ ja:
     task_registration: タスク登録
     have_error: 件のエラーがあります。
     expired_at: 終了期限
+    expired_sort: 終了期限でソートする

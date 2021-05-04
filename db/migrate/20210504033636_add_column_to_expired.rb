@@ -1,6 +1,6 @@
 class AddColumnToExpired < ActiveRecord::Migration[5.2]
   def up
-    add_column :tasks, :expired_at, :date, default: "2030-12-31", null: false
+    add_column :tasks, :expired_at, :date, default: -> { "now()" } , null: false
 
   end
   def down

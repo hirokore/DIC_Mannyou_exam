@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_033636) do
     t.text "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "expired_at", default: "2030-12-31", null: false
+    t.date "expired_at", default: -> { "now()" }, null: false
   end
 
 end
