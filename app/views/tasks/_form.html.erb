@@ -17,7 +17,7 @@
     <%= f.text_field :details, id: "task_content" %><br>
     <%= f.label t('view.expired_at') %>
     <%= f.date_field :expired_at, id: "task_expired_at" %><br>
-    <%= f.label t('view.expired_at') %>
+    <%= f.label t('view.status') %>
     <%= f.select :status, Task.statuses.keys, id: "task_status" %><br>
     <%= f.submit t('view.task_registration') %>
   </div>
