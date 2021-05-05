@@ -35,8 +35,10 @@ class TasksController < ApplicationController
         @task_sort_created = @tasks.where('name LIKE ?', "%#{params[:search][:name]}%").where(status: params[:search][:status])
       elsif params[:search][:name].present?
         @task_sort_created = @tasks.where('name LIKE ?', "%#{params[:search][:name]}%")
-      elsif params[:search][:status].present?
+      elsif params[:search][:status] != "---"
         @task_sort_created = @tasks.where(status: params[:search][:status])
+      else
+        @task_sort_created = @tasks
       end
     else
       @task_sort_created = Task.all.order(created_at: :desc)
