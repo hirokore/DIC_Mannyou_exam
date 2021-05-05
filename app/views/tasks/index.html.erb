@@ -5,7 +5,7 @@
       <th><%= t('view.task_name') %></th>
       <th><%= t('view.content') %></th>
       <th><%= t('view.expired_at') %></th>
-      <th></th>
+      <th><%= t('view.status') %></th>
       <th></th>
     </tr>
   </thead>
@@ -15,6 +15,7 @@
         <td class="task_list_name"><%= task.name %></td>
         <td><%= task.details %></td>
         <td class="task_list_expired_at"><%= task.expired_at %></td>
+        <td class="task_list_status"><%= task.status %></td>
         <td><%= link_to t('view.detail'), task %></td>
         <td><%= link_to t('view.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: t('view.destroy?') } %></td>

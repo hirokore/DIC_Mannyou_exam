@@ -9,6 +9,9 @@
   <p>
     <strong><%= t('view.expired_at') %>:</strong><%= @task.expired_at %>
   </p>
+  <p>
+    <strong><%= t('view.status') %>:</strong><%= @task.status %>
+  </p>
 </div>
 <%= link_to t('view.edit'), edit_task_path %> |
 <%= link_to t('view.back'), tasks_path %>

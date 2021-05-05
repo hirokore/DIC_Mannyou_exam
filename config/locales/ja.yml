@@ -235,3 +235,5 @@ ja:
     have_error: 件のエラーがあります。
     expired_at: 終了期限
     expired_sort: 終了期限でソートする
+    status: ステータス
+    
