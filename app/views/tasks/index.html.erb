@@ -4,7 +4,7 @@
   <%= f.label t('view.task_name') %>
   <%= f.text_field :name, id: "task_name" ,placeholder:"何かお探しですか？"%>
   <%= f.label t('view.status') %>
-  <%= f.select :status, Task.statuses.keys, id: "task_status" %>
+  <%= f.select :status, Task.statuses.keys%>
   <%= f.submit t('view.task_search') %>
 <% end %>
 

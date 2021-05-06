@@ -11,7 +11,8 @@ describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "task_name",	with: "task_test"
         fill_in "task_content",	with: "details_test"
-        fill_in "task_expired_at",	with: "(002020-04-01).to_date"
+        fill_in "task_expired_at", with: "(002020-04-01).to_date"
+        select "未着手", from: "task_status"
         click_on "タスク登録"
         expect(page).to have_content("登録完了")
       end
@@ -42,6 +43,41 @@ describe 'タスク管理機能', type: :system do
         expect(list[1]).to have_content "2020-04-01"
       end
     end
+    context 'タイトル検索をした場合' do
+      it 'タイトルで検索できる' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        fill_in "task_name", with: "test_f"
+        click_on "検索"
+        list = all('.task_list_name')
+        expect(list[0]).to have_content "test_first"
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it 'ステータスで検索できる' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        select "未着手", from: "search_status"
+        click_on "検索"
+        list = all('.task_list_status')
+        expect(list[0]).to have_content "未着手"
+      end
+    end
+    context 'タイトルとステータスの両方で検索をした場合' do
+      it 'タイトルとステータスの両方で検索できる' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        fill_in "task_name", with: "test_first"
+        select "未着手", from: "search_status"
+        click_on "検索"
+        list_name = all('.task_list_name')
+        list_status = all('.task_list_status')
+        expect(list_name[0]).to have_content "test_first"
+        expect(list_status[0]).to have_content "未着手"
+      end
+    end
+
+
   end
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
