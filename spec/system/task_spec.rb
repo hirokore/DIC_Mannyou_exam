@@ -38,9 +38,22 @@ describe 'タスク管理機能', type: :system do
       it '終了期限が一番遅いタスクが一番上に表示される' do
         FactoryBot.create(:second_task)
         visit tasks_path
+        click_on "終了期限でソートする"
+        sleep 0.5
         list = all('.task_list_expired_at')
         expect(list[0]).to have_content "2020-04-05"
         expect(list[1]).to have_content "2020-04-01"
+      end
+    end
+    context '優先度でソートするというリンクを押した場合' do
+      it '優先度が一番高いタスクが一番上に表示される' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        click_on "優先度でソートする"
+        sleep 0.5
+        list = all('.task_list_priority')
+        expect(list[0]).to have_content "高"
+        expect(list[1]).to have_content "低"
       end
     end
     context 'タイトル検索をした場合' do
@@ -76,8 +89,6 @@ describe 'タスク管理機能', type: :system do
         expect(list_status[0]).to have_content "未着手"
       end
     end
-
-
   end
   describe '詳細表示機能' do
     context '任意のタスク詳細画面に遷移した場合' do
