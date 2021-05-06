@@ -19,6 +19,8 @@
     <%= f.date_field :expired_at %><br>
     <%= f.label t('view.status') %>
     <%= f.select :status, Task.statuses.keys %><br>
+    <%= f.label t('view.priority') %>
+    <%= f.select :priority, Task.priorities.keys %><br>
     <%= f.submit t('view.task_registration') %>
   </div>
 <% end %>

@@ -237,3 +237,5 @@ ja:
     expired_sort: 終了期限でソートする
     status: ステータス
     task_search: 検索
+    priority: 優先度
+    priority_sort: 優先度でソートする
