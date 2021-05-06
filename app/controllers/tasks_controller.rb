@@ -32,11 +32,11 @@ class TasksController < ApplicationController
       @task_sort_created = @tasks.order(expired_at: :desc)
     elsif params[:search].present?
       if params[:search][:name].present? && params[:search][:status] != "---"
-        @task_sort_created = @tasks.where('name LIKE ?', "%#{params[:search][:name]}%").where(status: params[:search][:status])
+        @task_sort_created = @tasks.name_status_like(params[:search][:name],params[:search][:status])
       elsif params[:search][:name].present?
-        @task_sort_created = @tasks.where('name LIKE ?', "%#{params[:search][:name]}%")
+        @task_sort_created = @tasks.name_like(params[:search][:name])
       elsif params[:search][:status] != "---"
-        @task_sort_created = @tasks.where(status: params[:search][:status])
+        @task_sort_created = @tasks.status_like(params[:search][:status])
       else
         @task_sort_created = @tasks
       end
