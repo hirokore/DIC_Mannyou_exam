@@ -1,4 +1,5 @@
-<h1><%= t('view.task') %><%= t('view.detail') %><%= t('view.display') %></h1>
+<br>
+<legend><%= t('view.task') %><%= t('view.detail') %><%= t('view.display') %></legend>
 <div class="">
   <p>
     <strong><%= t('view.task_name') %>:</strong><%= @task.name %>
@@ -18,4 +19,4 @@
 </div>
 <%= link_to t('view.edit'), edit_task_path %> |
 <%= link_to t('view.back'), tasks_path %>
-
+<br><br>

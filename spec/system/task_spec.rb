@@ -12,9 +12,10 @@ describe 'タスク管理機能', type: :system do
         fill_in "task_name",	with: "task_test"
         fill_in "task_content",	with: "details_test"
         fill_in "task_expired_at", with: "(002020-04-01).to_date"
-        select "未着手", from: "task_status"
+        select "未着手", from: "task[status]"
+        select "低", from: "task[priority]"
         click_on "タスク登録"
-        expect(page).to have_content("登録完了")
+        expect(page).to have_content("task_test")
       end
     end
   end
@@ -38,7 +39,7 @@ describe 'タスク管理機能', type: :system do
       it '終了期限が一番遅いタスクが一番上に表示される' do
         FactoryBot.create(:second_task)
         visit tasks_path
-        click_on "終了期限でソートする"
+        click_on "終了期限"
         sleep 0.5
         list = all('.task_list_expired_at')
         expect(list[0]).to have_content "2020-04-05"
@@ -49,7 +50,7 @@ describe 'タスク管理機能', type: :system do
       it '優先度が一番高いタスクが一番上に表示される' do
         FactoryBot.create(:second_task)
         visit tasks_path
-        click_on "優先度でソートする"
+        click_on "優先度"
         sleep 0.5
         list = all('.task_list_priority')
         expect(list[0]).to have_content "高"

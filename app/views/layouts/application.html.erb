@@ -8,11 +8,51 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <%= link_to(t('view.manyou'), tasks_path, {class: "navbar-brand"}) %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to(t('view.list'), tasks_path, {class: "nav-link"}) %>
+          </li>
+          <li class="nav-item">
+            <%= link_to(t('view.registration'), new_task_path, {class: "nav-link"}) %>
+          </li>
+          <%# <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              サブメニュー
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">ここに</a>
+              <a class="dropdown-item" href="#">サブリンクが</a>
+              <a class="dropdown-item" href="#">貼れるなぁ</a>
+            </div>
+          </li> %>
+        </ul>
+        <%# <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">検索</button>
+        </form> %>
+      </div>
+    </nav>
+    </header>
     <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
+      <%= content_tag(:div, value, class: "#{key} alert alert-dismissible alert-info") %>
     <% end %>
     <%= yield %>
+    <footer class="small">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center copyright">
+            ©︎ DicToK.Japan
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
