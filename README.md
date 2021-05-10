@@ -22,7 +22,7 @@
 | user_id | index | 
 | name | string |
 | status | string |
-| dead_line | date |
+| expired_at | integer |
 | priority | integer |
 
 <br>

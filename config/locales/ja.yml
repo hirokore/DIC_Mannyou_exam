@@ -74,7 +74,7 @@ ja:
     - :year
     - :month
     - :day
-  datetime:
+  daytime:
     distance_in_words:
       about_x_hours:
         one: 約1時間
@@ -233,3 +233,13 @@ ja:
     destroy?: 本当に削除してしまってもよろしいですか？
     task_registration: タスク登録
     have_error: 件のエラーがあります。
+    expired_at: 終了期限
+    expired_sort: 終了期限でソートする
+    status: ステータス
+    task_search: 検索
+    priority: 優先度
+    priority_sort: 優先度でソートする
+    manyou: 万葉課題
+    rabel: ラベル
+    maintenance: 未実装
+    

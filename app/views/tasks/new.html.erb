@@ -1,5 +1,10 @@
-<h1><%= t('view.task') %><%= t('view.registration') %><%= t('view.display') %></h1>
+<br>
+<legend><%= t('view.task') %><%= t('view.registration') %><%= t('view.display') %></legend>
 
 <%= render 'form' %>
 
-<%= link_to t('view.back'), tasks_path%>
+<br>
+<div class="field" style="padding:0 30px 0 30px;">
+  <%= link_to t('view.back'), tasks_path%>
+</div>
+<br>

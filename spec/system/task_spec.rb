@@ -11,8 +11,11 @@ describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "task_name",	with: "task_test"
         fill_in "task_content",	with: "details_test"
+        fill_in "task_expired_at", with: "(002020-04-01).to_date"
+        select "未着手", from: "task[status]"
+        select "低", from: "task[priority]"
         click_on "タスク登録"
-        expect(page).to have_content("登録完了")
+        expect(page).to have_content("task_test")
       end
     end
   end
@@ -27,9 +30,64 @@ describe 'タスク管理機能', type: :system do
       it '新しいタスクが一番上に表示される' do
         FactoryBot.create(:second_task)
         visit tasks_path
-        task_list = all('.task_list')
-        expect(task_list[0]).to have_content 'test_second'
-        expect(task_list[1]).to have_content 'test_first'
+        list = all('.task_list_name')
+        expect(list[0]).to have_content 'test_second'
+        expect(list[1]).to have_content 'test_first'
+      end
+    end
+    context '終了期限でソートするというリンクを押した場合' do
+      it '終了期限が一番遅いタスクが一番上に表示される' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        click_on "終了期限"
+        sleep 0.5
+        list = all('.task_list_expired_at')
+        expect(list[0]).to have_content "2020-04-05"
+        expect(list[1]).to have_content "2020-04-01"
+      end
+    end
+    context '優先度でソートするというリンクを押した場合' do
+      it '優先度が一番高いタスクが一番上に表示される' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        click_on "優先度"
+        sleep 0.5
+        list = all('.task_list_priority')
+        expect(list[0]).to have_content "高"
+        expect(list[1]).to have_content "低"
+      end
+    end
+    context 'タイトル検索をした場合' do
+      it 'タイトルで検索できる' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        fill_in "task_name", with: "test_f"
+        click_on "検索"
+        list = all('.task_list_name')
+        expect(list[0]).to have_content "test_first"
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it 'ステータスで検索できる' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        select "未着手", from: "search_status"
+        click_on "検索"
+        list = all('.task_list_status')
+        expect(list[0]).to have_content "未着手"
+      end
+    end
+    context 'タイトルとステータスの両方で検索をした場合' do
+      it 'タイトルとステータスの両方で検索できる' do
+        FactoryBot.create(:second_task)
+        visit tasks_path
+        fill_in "task_name", with: "test_first"
+        select "未着手", from: "search_status"
+        click_on "検索"
+        list_name = all('.task_list_name')
+        list_status = all('.task_list_status')
+        expect(list_name[0]).to have_content "test_first"
+        expect(list_status[0]).to have_content "未着手"
       end
     end
   end
