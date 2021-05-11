@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
+  before_action :irregul_operation, only: [ :show, :edit, :update, :destroy ]
 
   def new
     if params[:back]
@@ -69,4 +70,9 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
+
+  def irregul_operation
+    redirect_to tasks_path, notice: "不正操作を記録しました。" unless current_user.id == @task.user.id
+  end
+  
 end
