@@ -8,7 +8,7 @@ end
 from = Time.parse("2021/05/25")
 to = Time.parse("2024/05/25")
 
-10.times do |n|
+80.times do |n|
   name = "hiro#{n}_task"
   details = "hiro#{n}_details"
   date = Random.rand(from..to)
