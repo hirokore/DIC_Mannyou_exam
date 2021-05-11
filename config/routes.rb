@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/new'
-  get 'users/index'
-  get 'users/edit'
-  root 'tasks#index'
+  resources :users
   resources :tasks
 end

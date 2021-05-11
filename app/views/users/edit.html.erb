@@ -1,2 +1,26 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="users_h1_box"><h1>ユーザー編集画面</h1></div>
+<%= render 'form' %>
+<div class="login">
+  <div class="login-triangle"></div>
+  <h2 class="login-header">Log in</h2>
+  <%= form_with(model: @user, local: true ) do |f| %>
+    <form class="login-container">
+      <%= f.label "お名前：" %><br>
+      <%= f.text_field :name %><br>
+      <%= f.label "メールアドレス：" %><br>
+      <%= f.text_field :email %><br>
+      <%= f.label "パスワード："  %><br>
+      <%= f.password_field :password %><br>
+      <%= f.label "パスワード確認："  %><br>
+      <%= f.password_field :password_confirmation %><br><br>
+      <%= f.label "画像" %>
+      <% if @user.image.url  %>
+        <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+      <% end %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %><br><br>
+      <%= f.submit "アカウント編集" %><br><br>
+    </form>
+    <% end %>
+</div>
+<%= link_to "戻る", user_path(@user.id)%>
