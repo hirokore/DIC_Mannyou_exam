@@ -2,7 +2,7 @@
   name = "hiro#{n}"
   email = "hiro#{n}@dic.com"
   password = "000000"
-  User.create!(name: name,email: email,password_digest: password)
+  User.create!(name: name,email: email,password: password, password_confirmation: password)
 end
 
 from = Time.parse("2021/05/25")
