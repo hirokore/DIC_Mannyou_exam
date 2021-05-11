@@ -13,12 +13,6 @@
       <%= f.password_field :password %><br>
       <%= f.label "パスワード確認："  %><br>
       <%= f.password_field :password_confirmation %><br><br>
-      <%= f.label "画像" %>
-      <% if @user.image.url  %>
-        <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
-      <% end %>
-      <%= f.file_field :image %>
-      <%= f.hidden_field :image_cache %><br><br>
       <%= f.submit "アカウント編集" %><br><br>
     </form>
     <% end %>

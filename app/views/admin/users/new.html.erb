@@ -1,11 +1,11 @@
-<div class="users_h1_box"><h1>万葉課題</h1></div>
+<div class="users_h1_box"><h1>管理者用ページ（ユーザー作成）</h1></div>
 <%= render 'form' %>
 <div class="login">
   <div class="login-triangle"></div>
-  <h2 class="login-header">Log in</h2>
-  <%= form_with(model: @user, local: true ) do |f| %>
+  <h2 class="login-header">必要事項</h2>
+  <%= form_with(model: @user, local: true, url: admin_users_path) do |f| %>
     <form class="login-container">
-      <%= f.label "お名前：" %><br>
+      <%= f.label "名前：" %><br>
       <%= f.text_field :name %><br>
       <%= f.label "メールアドレス：" %><br>
       <%= f.text_field :email %><br>

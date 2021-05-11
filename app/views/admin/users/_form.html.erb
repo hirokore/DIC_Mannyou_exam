@@ -1,0 +1,10 @@
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= @user.errors.count%>件のエラーより<%= @user.name if @user.name %><%= "ユーザ"  if @user.name.empty? %>の登録ができませんでした。</h2>
+		<ul>
+		<% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
