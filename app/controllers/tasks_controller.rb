@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.where(user_id: current_user.id)
+    @tasks = Task.where(user_id: current_user.id).includes(:user)
     @tasks = @tasks.page(params[:page]).per(8)
     if params[:sort_expired]
       @task_sort_created = @tasks.order(expired_at: :desc)
