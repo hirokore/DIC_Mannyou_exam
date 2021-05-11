@@ -1,0 +1,11 @@
+<h1>管理者がめん？</h1>
+
+<table>
+  <th></th>
+  <th></th>
+  <% @user.each do |user| %>
+    <tr>
+      <td><%= user.id %>:<%= user.name %></td>
+    </tr>
+  <% end %>
+</table>
