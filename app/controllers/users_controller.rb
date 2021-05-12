@@ -29,7 +29,9 @@ class UsersController < ApplicationController
 
   def show
     @users = User.find(params[:id])
-    redirect_to tasks_path, notice: "不正操作を記録しました。" unless current_user.id == @users.id
+    unless current_user.admin?
+      redirect_to tasks_path, notice: "不正操作を記録しました。" unless current_user.id == @users.id
+    end
   end
 
   def edit

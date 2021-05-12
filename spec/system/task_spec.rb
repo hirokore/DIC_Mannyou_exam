@@ -2,8 +2,15 @@ require 'rails_helper'
 
 describe 'タスク管理機能', type: :system do
   let!(:task) { FactoryBot.create(:task) }
+  let!(:second_task) { FactoryBot.create(:second_task, user_id: task.user.id)}
   before do
     driven_by(:selenium_chrome_headless)
+    visit new_session_path
+    fill_in "session[email]",	with: "mob1@dic.com" 
+    fill_in "session[password]",	with: "000000"
+    click_on "ログイン"
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
   end
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -23,12 +30,12 @@ describe 'タスク管理機能', type: :system do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         visit tasks_path
+        sleep 0.5
         expect(page).to have_content 'test_first'
       end
     end
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
-        FactoryBot.create(:second_task)
         visit tasks_path
         list = all('.task_list_name')
         expect(list[0]).to have_content 'test_second'
@@ -37,7 +44,6 @@ describe 'タスク管理機能', type: :system do
     end
     context '終了期限でソートするというリンクを押した場合' do
       it '終了期限が一番遅いタスクが一番上に表示される' do
-        FactoryBot.create(:second_task)
         visit tasks_path
         click_on "終了期限"
         sleep 0.5
@@ -48,7 +54,6 @@ describe 'タスク管理機能', type: :system do
     end
     context '優先度でソートするというリンクを押した場合' do
       it '優先度が一番高いタスクが一番上に表示される' do
-        FactoryBot.create(:second_task)
         visit tasks_path
         click_on "優先度"
         sleep 0.5
@@ -59,7 +64,6 @@ describe 'タスク管理機能', type: :system do
     end
     context 'タイトル検索をした場合' do
       it 'タイトルで検索できる' do
-        FactoryBot.create(:second_task)
         visit tasks_path
         fill_in "task_name", with: "test_f"
         click_on "検索"
@@ -69,7 +73,6 @@ describe 'タスク管理機能', type: :system do
     end
     context 'ステータス検索をした場合' do
       it 'ステータスで検索できる' do
-        FactoryBot.create(:second_task)
         visit tasks_path
         select "未着手", from: "search_status"
         click_on "検索"
@@ -79,7 +82,6 @@ describe 'タスク管理機能', type: :system do
     end
     context 'タイトルとステータスの両方で検索をした場合' do
       it 'タイトルとステータスの両方で検索できる' do
-        FactoryBot.create(:second_task)
         visit tasks_path
         fill_in "task_name", with: "test_first"
         select "未着手", from: "search_status"
