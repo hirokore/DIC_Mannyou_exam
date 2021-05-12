@@ -21,6 +21,8 @@
       <%= f.password_field :password %><br>
       <%= f.label "パスワード確認："  %><br>
       <%= f.password_field :password_confirmation %><br><br>
+      <%= f.label "管理者権限" %><br>
+      <%= f.select :admin, [['一般',false],['管理者',true]], { include_blank: true }  %><br><br>
       <%= f.submit "アカウント作成" %>
     </form>
     <% end %>
