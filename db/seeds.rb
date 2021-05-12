@@ -18,3 +18,9 @@ to = Time.parse("2024/05/25")
   user_id = rand(1..5)
   Task.create!(name: name, details: details, expired_at: date, status: status, priority: priority, user_id: user_id)
 end
+
+User.create!(name:  "root",
+  email: "root@dic.com",
+  password:  "000000",
+  password_confirmation: "000000",
+  admin: true)

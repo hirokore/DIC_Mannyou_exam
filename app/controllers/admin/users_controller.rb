@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
-  # before_action :admin_user
-  before_action :set_params, only: [:show, :destroy, :update]
+  before_action :admin_user
+  before_action :set_params, only: [:show, :destroy, :update, :edit]
 
   def new
     @user = User.new
@@ -13,11 +13,23 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_users_path, notice: "ユーザが作成されました！"
+      redirect_to admin_users_path, notice: "作成完了"
     else
       render :new
     end
   end
+
+  def edit
+  end
+  
+  def update
+    if @user.update(user_params)
+      redirect_to admin_users_path, notice: "更新完了"
+    else
+      render :new
+    end
+  end
+  
 
   def destroy
     @user.destroy

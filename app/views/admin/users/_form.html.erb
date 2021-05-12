@@ -8,3 +8,20 @@
 		</ul>
 	</div>
 <% end %>
+<div class="login">
+  <div class="login-triangle"></div>
+  <h2 class="login-header">必要事項</h2>
+  <%= form_with(model: @user, local: true, url: choose_admin_path) do |f| %>
+    <form class="login-container">
+      <%= f.label "名前：" %><br>
+      <%= f.text_field :name %><br>
+      <%= f.label "メールアドレス：" %><br>
+      <%= f.text_field :email %><br>
+      <%= f.label "パスワード："  %><br>
+      <%= f.password_field :password %><br>
+      <%= f.label "パスワード確認："  %><br>
+      <%= f.password_field :password_confirmation %><br><br>
+      <%= f.submit "アカウント作成" %>
+    </form>
+    <% end %>
+</div>
