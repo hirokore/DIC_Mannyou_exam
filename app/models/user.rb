@@ -5,12 +5,19 @@ class User < ApplicationRecord
   validates :name,  presence: true, length: { maximum: 128 }
   validates :email, presence: true, length: { maximum: 255 },format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
-  before_destroy :check_admin
-  before_save :check_admin
+  before_destroy :check_admin_destroy
+  before_update :check_admin_update
 
   private
 
-  def check_admin
-    throw :abort if User.where(admin: true).count == 2 && self.admin? == false
+  def check_admin_update
+    if changes.present? 
+      if changes[:admin][0]
+        throw :abort if User.where(admin: true).count == 1 && self.admin == false
+      end
+    end
+  end
+  def check_admin_destroy
+    throw :abort if User.where(admin: true).count == 1 && self.admin? == true
   end
 end

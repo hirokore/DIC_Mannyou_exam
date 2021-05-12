@@ -1,4 +1,4 @@
-5.times do |n|
+8.times do |n|
   name = "hiro#{n}"
   email = "hiro#{n}@dic.com"
   password = "000000"

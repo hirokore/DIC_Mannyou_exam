@@ -7,7 +7,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.order("created_at ASC")
+    @users = User.all.order("created_at ASC").includes(:tasks)
+    @users = @users.page(params[:page]).per(8)
   end
 
   def create

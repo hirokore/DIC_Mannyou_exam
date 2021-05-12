@@ -5,8 +5,9 @@ module Admin::UsersHelper
   def choose_admin_path
     if action_name == "new"
       admin_users_path
-    else
-      admin_user_path(@user.id)
+    elsif action_name == "edit"
+      admin_user_path
     end
   end
 end
+
