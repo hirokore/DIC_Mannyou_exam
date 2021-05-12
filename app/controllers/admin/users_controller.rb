@@ -25,15 +25,20 @@ class Admin::UsersController < ApplicationController
   def update
     if @user.update(user_params)
       redirect_to admin_users_path, notice: "更新完了"
-    else
+    elsif @user.errors.any? 
       render :new
+    else
+      redirect_to admin_users_path, notice: "最後の管理者です、消せません"
     end
   end
   
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: "削除完了"
+    if @user.destroy
+      redirect_to admin_users_path, notice: "削除完了"
+    else
+      redirect_to admin_users_path, notice: "最後の管理者です、消せません"
+    end
   end
   
   
