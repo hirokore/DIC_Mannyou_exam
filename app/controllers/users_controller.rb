@@ -28,6 +28,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @tasks = Task.where(user_id: current_user.id).includes(:user)
+    @tasks = @tasks.page(params[:page]).per(8)
     @users = User.find(params[:id])
     unless current_user.admin?
       redirect_to tasks_path, notice: "不正操作を記録しました。" unless current_user.id == @users.id

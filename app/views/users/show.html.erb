@@ -2,5 +2,38 @@
 <p>
   <strong>メールアドレス：<%= @users.email %>
 </p>
-
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><a class="btn btn-primary" style="color:white;"><%= t('view.task_name') %></a></th>
+      <th><a class="btn btn-secondary" style="color:white;"><%= t('view.content') %></a></th>
+      <th><%= link_to t('view.expired_at'), tasks_path(sort_expired:"true"), class: 'btn btn-danger dropdown-toggle' %></th>
+      <th><a class="btn btn-success" style="color:white;"><%= t('view.status') %></a></th>
+      <th><%= link_to t('view.priority'), tasks_path(sort_priority:"true"), class: 'btn btn-warning dropdown-toggle' %></th>
+      <th><a class="btn btn-info" style="color:white;"><%= t('view.rabel') %></a></th>
+      <th><a class="btn btn-primary" style="color:white;">作成者</a></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td class="task_list_name"><%= task.name %></td>
+        <td><%= task.details %></td>
+        <td class="task_list_expired_at"><%= task.expired_at %></td>
+        <td class="task_list_status"><%= task.status %></td>
+        <td class="task_list_priority"><%= task.priority %></td>
+        <td>
+          <a class="badge badge-pill badge-primary" style="color:white;"><%= t('view.maintenance') %></a>
+        </td>
+        <td class="task_list_name"><%= task.user.name %></td>
+        <td><%= link_to t('view.detail'), task, class: "btn btn-outline-primary"%></td>
+        <td><%= link_to t('view.edit'), edit_task_path(task), class: "btn btn-outline-success" %></td>
+        <td><%= link_to t('view.destroy'), task, method: :delete, data: { confirm: t('view.destroy?') }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate(@tasks) %>
 <%= link_to "アカウント編集", edit_user_path%>

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_secure_password
   before_validation { email.downcase! }
   validates :name,  presence: true, length: { maximum: 128 }
-  validates :email, presence: true, length: { maximum: 255 },format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :email, presence: true, length: { maximum: 255 },format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: true
 
   before_destroy :check_admin_destroy
   before_update :check_admin_update
