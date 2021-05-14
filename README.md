@@ -43,6 +43,7 @@
 | :--- | :--- | 
 | id | index | 
 | name | string |
+| user_id | bigint |
 <br>
 
 
