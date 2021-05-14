@@ -19,8 +19,8 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td class="task_list_name"><%= task.name %></td>
-        <td><%= task.details %></td>
+        <td class="task_list_name"><%= task.name.truncate(10) %></td>
+        <td><%= task.details.truncate(10) %></td>
         <td class="task_list_expired_at"><%= task.expired_at %></td>
         <td class="task_list_status"><%= task.status %></td>
         <td class="task_list_priority"><%= task.priority %></td>
