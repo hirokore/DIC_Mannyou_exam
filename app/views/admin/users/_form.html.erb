@@ -1,0 +1,29 @@
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= @user.errors.count%>件のエラーより<%= @user.name if @user.name %><%= "ユーザ"  if @user.name.empty? %>の登録ができませんでした。</h2>
+		<ul>
+		<% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
+<div class="login">
+  <div class="login-triangle"></div>
+  <h2 class="login-header">必要事項</h2>
+  <%= form_with(model: @user, local: true, url: choose_admin_path) do |f| %>
+    <form class="login-container">
+      <%= f.label "名前：" %><br>
+      <%= f.text_field :name %><br>
+      <%= f.label "メールアドレス：" %><br>
+      <%= f.text_field :email %><br>
+      <%= f.label "パスワード："  %><br>
+      <%= f.password_field :password %><br>
+      <%= f.label "パスワード確認："  %><br>
+      <%= f.password_field :password_confirmation %><br><br>
+      <%= f.label "管理者権限" %><br>
+      <%= f.select :admin, [['一般',false],['管理者',true]], { include_blank: false }  %><br><br>
+      <%= f.submit "送信" %>
+    </form>
+    <% end %>
+</div>

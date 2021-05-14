@@ -1,0 +1,14 @@
+<div class="users_h1_box"><h1>万葉課題</h1></div>
+<div class="login">
+  <div class="login-triangle"></div>
+  <h2 class="login-header">Log in</h2>
+  <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+    <form class="login-container">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.submit "ログイン" %>
+    </form>
+  <% end %>
+</div>

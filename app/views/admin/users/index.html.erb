@@ -1,0 +1,26 @@
+<h1>管理者ページ</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><a class="btn btn-primary" style="color:white;">ユーザー名</a></th>
+      <th><a class="btn btn-warning" style="color:white;">タスク数</a></th>
+      <th><a class="btn btn-danger" style="color:white;">管理者権限</a></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.tasks.count %></td>
+        <td><%= user.admin %></td>
+        <td><%= link_to t('view.detail'), user, class: "btn btn-outline-primary"%></td>
+        <td><%= link_to t('view.edit'), edit_admin_user_path(user), class: "btn btn-outline-success" %></td>
+        <td><%= link_to t('view.destroy'), admin_user_path(user), method: :delete, id: "delete_button", data: { confirm: t('view.destroy?') }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users %>

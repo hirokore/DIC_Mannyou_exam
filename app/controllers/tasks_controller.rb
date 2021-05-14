@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
+  before_action :irregul_operation, only: [ :show, :edit, :update, :destroy ]
 
   def new
     if params[:back]
@@ -11,6 +12,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path, notice: "登録完了"
     else
@@ -27,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all
+    @tasks = Task.where(user_id: current_user.id).includes(:user)
     @tasks = @tasks.page(params[:page]).per(8)
     if params[:sort_expired]
       @task_sort_created = @tasks.order(expired_at: :desc)
@@ -68,4 +70,9 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
+
+  def irregul_operation
+    redirect_to tasks_path, notice: "不正操作を記録しました。" unless current_user.id == @task.user.id
+  end
+  
 end
