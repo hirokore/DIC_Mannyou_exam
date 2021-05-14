@@ -19,7 +19,7 @@ to = Time.parse("2024/05/25")
   Task.create!(name: name, details: details, expired_at: date, status: status, priority: priority, user_id: user_id)
 end
 
-User.create!(name:  "root",
+User.create!(name:  "ラベル管理者",
   email: "root@dic.com",
   password:  "000000",
   password_confirmation: "000000",
