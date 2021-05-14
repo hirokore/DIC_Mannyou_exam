@@ -32,8 +32,8 @@
 | カラム名 | データ型 | 
 | :--- | :--- | 
 | id | index | 
-| task_id | integer | 
-| label_id | integer |
+| task_id | bigint | 
+| label_id | bigint |
 
 <br>
 
