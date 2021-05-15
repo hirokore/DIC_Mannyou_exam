@@ -25,6 +25,8 @@
     <%= f.select :status, Task.statuses.keys, {}, {class: 'custom-select', id: 'value'} %><br><br>
     <%= f.label t('view.priority') %>
     <%= f.select :priority, Task.priorities.keys, {}, {class: 'custom-select', id: 'value'} %><br><br>
+    <%= f.label t('view.priority') %>
+    <%= f.select :priority, Task.priorities.keys, {}, {class: 'custom-select', id: 'value'} %><br><br>
     <%= f.submit t('view.task_registration') %>
   </div>
 <% end %>
