@@ -15,7 +15,7 @@
     <%= form_with(scope: :search, url: tasks_path, local: true, method: :get) do |f| %>
       <%= f.label "ラベル名" %>
       <%= f.select :label_id, Label.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
-      <%= f.submit t('view.task_search') %>
+      <%= f.submit "ラベル検索" %>
     <% end %>
   </th>
 </table>

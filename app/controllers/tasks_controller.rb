@@ -7,7 +7,7 @@ class TasksController < ApplicationController
       @task = Task.new(task_params)
     else
       @task = Task.new
-      @labels = Label.where(user_id: 9).or(Label.where(user_id: current_user))
+      @labels = Label.where(user_id: 1).or(Label.where(user_id: current_user))
     end
   end
 
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
       if params[:search][:name].present? && params[:search][:status] != "---"
         @task_sort_created = @tasks.name_status_like(params[:search][:name],params[:search][:status])
       elsif params[:search][:label_id].present?
-        @task_sort_created = @tasks.where(id: Labeling.where(label_id: params[:search][:label_id]).pluck(:id))   
+        @task_sort_created = @tasks.where(id: Labeling.where(label_id: params[:search][:label_id]).pluck(:task_id))
       elsif params[:search][:label_id] == ""
         @task_sort_created = @tasks        
       elsif params[:search][:name].present?
@@ -57,11 +57,11 @@ class TasksController < ApplicationController
   end
 
   def show
-    @labels = Label.where(user_id: 9).or(Label.where(user_id: current_user))
+    @labels = Label.where(user_id: 1).or(Label.where(user_id: current_user))
   end
 
   def edit
-    @labels = Label.where(user_id: 9).or(Label.where(user_id: current_user))
+    @labels = Label.where(user_id: 1).or(Label.where(user_id: current_user))
   end
 
   def destroy

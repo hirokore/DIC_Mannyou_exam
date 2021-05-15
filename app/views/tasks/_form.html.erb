@@ -27,7 +27,7 @@
     <%= f.select :priority, Task.priorities.keys, {}, {class: 'custom-select', id: 'value'} %><br><br>
     <% @labels.each do |label| %>
       <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-      <%= label.name %>
+      <%= f.label :label_ids, label.name, value: label[:id] %>
     <% end %>  
     <br><br>
     <%= f.submit t('view.task_registration') %>
