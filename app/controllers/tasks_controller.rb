@@ -55,6 +55,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @labels = Label.where(user_id: 9).or(Label.where(user_id: current_user))
   end
 
   def destroy
