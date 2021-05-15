@@ -52,6 +52,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @labels = Label.where(user_id: 9).or(Label.where(user_id: current_user))
   end
 
   def edit
