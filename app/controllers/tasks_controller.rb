@@ -7,6 +7,7 @@ class TasksController < ApplicationController
       @task = Task.new(task_params)
     else
       @task = Task.new
+      @labels = Label.where(user_id: 9).or(Label.where(user_id: current_user))
     end
   end
 
@@ -64,7 +65,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :details, :expired_at, :status, :priority)
+    params.require(:task).permit(:name, :details, :expired_at, :status, :priority, label_ids: [])
   end
 
   def set_task
