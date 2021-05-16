@@ -1,6 +1,11 @@
 <div class="users_h1_box"><h1><%= @users.name %>のページ</h1></div>
 <p>
-  <strong>メールアドレス：<%= @users.email %>
+  <strong>メールアドレス：</strong><%= @users.email %>
+</p>
+<p><strong>マイラベル：</strong>
+  <% @users.labels.each do |label| %>
+    <a class="badge badge-pill badge-primary" style="color:white;"><%= label.name %></a>
+  <% end %>
 </p>
 <table class="table table-hover">
   <thead>
@@ -19,13 +24,15 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td class="task_list_name"><%= task.name %></td>
-        <td><%= task.details %></td>
+        <td class="task_list_name"><%= task.name.truncate(10) %></td>
+        <td><%= task.details.truncate(10) %></td>
         <td class="task_list_expired_at"><%= task.expired_at %></td>
         <td class="task_list_status"><%= task.status %></td>
         <td class="task_list_priority"><%= task.priority %></td>
         <td>
-          <a class="badge badge-pill badge-primary" style="color:white;"><%= t('view.maintenance') %></a>
+          <% task.labels.each do |label| %>
+            <a class="badge badge-pill badge-primary" style="color:white;"><%= label.name %></a>
+          <% end %>
         </td>
         <td class="task_list_name"><%= task.user.name %></td>
         <td><%= link_to t('view.detail'), task, class: "btn btn-outline-primary"%></td>

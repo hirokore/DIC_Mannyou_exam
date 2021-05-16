@@ -1,13 +1,24 @@
 <br>
 <legend><%= t('view.task') %><%= t('view.list') %><%= t('view.display') %></legend>
 
-<%= form_with(scope: :search, url: tasks_path, local: true, method: :get) do |f| %>
-  <%= f.label t('view.task_name') %>
-  <%= f.text_field :name, id: "task_name" ,placeholder:"何かお探しですか？"%>
-  <%= f.label t('view.status') %>
-  <%= f.select :status, Task.statuses.keys%>
-  <%= f.submit t('view.task_search') %>
-<% end %>
+<table>
+  <th>
+    <%= form_with(scope: :search, url: tasks_path, local: true, method: :get) do |f| %>
+      <%= f.label t('view.task_name') %>
+      <%= f.text_field :name, id: "task_name" ,placeholder:"何かお探しですか？"%>
+      <%= f.label t('view.status') %>
+      <%= f.select :status, Task.statuses.keys%>
+      <%= f.submit t('view.task_search') %>
+    <% end %>
+  </th>
+  <th style="padding-left:20px;">
+    <%= form_with(scope: :search, url: tasks_path, local: true, method: :get) do |f| %>
+      <%= f.label "ラベル名" %>
+      <%= f.select :label_id, Label.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
+      <%= f.submit "ラベル検索" %>
+    <% end %>
+  </th>
+</table>
 
 <br>
 
@@ -23,18 +34,21 @@
       <th><a class="btn btn-primary" style="color:white;">作成者</a></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @task_sort_created.each do |task| %>
       <tr>
-        <td class="task_list_name"><%= task.name %></td>
-        <td><%= task.details %></td>
+        <td class="task_list_name"><%= task.name.truncate(10) %></td>
+        <td><%= task.details.truncate(10) %></td>
         <td class="task_list_expired_at"><%= task.expired_at %></td>
         <td class="task_list_status"><%= task.status %></td>
         <td class="task_list_priority"><%= task.priority %></td>
         <td>
-          <a class="badge badge-pill badge-primary" style="color:white;"><%= t('view.maintenance') %></a>
+          <% task.labels.each do |label| %>
+            <a class="badge badge-pill badge-primary" style="color:white;"><%= label.name %></a>
+          <% end %>
         </td>
         <td class="task_list_name"><%= task.user.name %></td>
         <td><%= link_to t('view.detail'), task, class: "btn btn-outline-primary"%></td>

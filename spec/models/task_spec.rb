@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe 'タスクモデル機能', type: :model do
-  let!(:task) { FactoryBot.create(:task, name: 'task', status: '着手中') }
-  let!(:second_task) { FactoryBot.create(:second_task, name: "sample", status: '未着手') }
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
       it 'バリデーションにひっかる' do
@@ -25,7 +23,7 @@ describe 'タスクモデル機能', type: :model do
   end
   describe '検索機能' do
     let!(:task) { FactoryBot.create(:task, name: 'task', status: '着手中') }
-    let!(:second_task) { FactoryBot.create(:second_task, name: "sample", status: '未着手') }
+    let!(:second_task) { FactoryBot.create(:second_task, name: "sample", status: '未着手', user_id: task.user.id) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         expect(Task.name_like('tas')).to include(task)

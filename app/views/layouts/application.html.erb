@@ -28,6 +28,9 @@
               <%= link_to("プロファイル", user_path(current_user.id), {class: "nav-link"}) %>
             </li>
             <li class="nav-item">
+              <%= link_to "ラベル作成", new_label_path, class: "nav-link", name: "ラベル作成" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: "nav-link", name: "ログアウト" %>
             </li>
           <% else %>

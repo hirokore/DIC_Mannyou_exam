@@ -19,11 +19,21 @@
 | カラム名 | データ型 | 
 | :--- | :--- | 
 | id | index | 
-| user_id | index | 
+| user_id | bigint | 
 | name | string |
 | status | string |
 | expired_at | integer |
 | priority | integer |
+
+<br>
+
+### Labellingモデル
+
+| カラム名 | データ型 | 
+| :--- | :--- | 
+| id | index | 
+| task_id | bigint | 
+| label_id | bigint |
 
 <br>
 
@@ -32,8 +42,8 @@
 | カラム名 | データ型 | 
 | :--- | :--- | 
 | id | index | 
-| task_id | index | 
 | name | string |
+| user_id | bigint |
 <br>
 
 

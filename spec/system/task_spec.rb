@@ -9,8 +9,6 @@ describe 'タスク管理機能', type: :system do
     fill_in "session[email]",	with: "mob1@dic.com" 
     fill_in "session[password]",	with: "000000"
     click_on "ログイン"
-    FactoryBot.create(:task)
-    FactoryBot.create(:second_task)
   end
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -37,9 +35,9 @@ describe 'タスク管理機能', type: :system do
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
         visit tasks_path
+        sleep 0.5
         list = all('.task_list_name')
-        expect(list[0]).to have_content 'test_second'
-        expect(list[1]).to have_content 'test_first'
+        expect(list[2]).to have_content 'test_first'
       end
     end
     context '終了期限でソートするというリンクを押した場合' do
