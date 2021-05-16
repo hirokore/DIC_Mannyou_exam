@@ -19,7 +19,7 @@ describe "ユーザー管理機能" do
     context "ユーザがログインせずタスク一覧画面に飛ぼうとした場合" do
       it "ログイン画面に遷移すること" do
         visit tasks_path
-        expect(page).to have_content 'Log in'
+        expect(page).to have_content 'LOG IN'
       end
     end
   end
@@ -77,7 +77,7 @@ describe "ユーザー管理機能" do
     let!(:mob1) { FactoryBot.create(:user) }
     let!(:mob2) { FactoryBot.create(:second_user) }
     let!(:root) { FactoryBot.create(:root_user) }
-  context "管理者ユーザが管理画面にアクセスした場合" do
+    context "管理者ユーザが管理画面にアクセスした場合" do
       it "アクセスできること" do
         visit new_session_path
         fill_in "session[email]",	with: "root@dic.com" 

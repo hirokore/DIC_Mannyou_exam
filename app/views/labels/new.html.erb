@@ -1,0 +1,23 @@
+<% if @label.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= @label.errors.count%>件のエラーより<%= @user.name if @user.name %><%= "ユーザ"  if @user.name.empty? %>の登録ができませんでした。</h2>
+		<ul>
+		<% @label.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="users_h1_box"><h1>ラベル作成ページ</h1></div>
+<div class="login">
+  <%= form_with(model: @label, local: true ) do |f| %>
+    <form class="login-container">
+      <%= f.label "ラベル名" %><br>
+      <%= f.text_field :name %><br>
+      <%= f.submit "ラベル作成" %>
+    </form>
+    <% end %>
+    <br>
+    <%= link_to "戻る", user_path(current_user)%>
+</div>
